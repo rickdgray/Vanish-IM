@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VanishIM\VanishIM\VanishIM.csproj" />
+    <ProjectReference Include="..\VanishIM\VanishIM.csproj" />
   </ItemGroup>
 
 </Project>
