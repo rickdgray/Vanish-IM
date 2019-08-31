@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanishIM.Android", "VanishIM\VanishIM.Android\VanishIM.Android.csproj", "{0FE99D65-1FB4-48AC-9137-59D40659A51A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanishIM.Android", "VanishIM.Android\VanishIM.Android.csproj", "{0FE99D65-1FB4-48AC-9137-59D40659A51A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanishIM.iOS", "VanishIM\VanishIM.iOS\VanishIM.iOS.csproj", "{57ED1424-F63C-45C7-94C7-39B4B8293A13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanishIM.iOS", "VanishIM.iOS\VanishIM.iOS.csproj", "{57ED1424-F63C-45C7-94C7-39B4B8293A13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VanishIM", "VanishIM\VanishIM\VanishIM.csproj", "{6EF7EA20-4F72-4478-B939-4153EBD75F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VanishIM", "VanishIM\VanishIM.csproj", "{6EF7EA20-4F72-4478-B939-4153EBD75F43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanishIM.Web", "VanishIM.Web\VanishIM.Web.csproj", "{875ECD66-C8C0-4464-9A22-450483CEEBB9}"
 EndProject
