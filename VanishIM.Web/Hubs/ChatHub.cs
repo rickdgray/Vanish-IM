@@ -23,13 +23,13 @@ namespace VanishIM.Web.Hubs
             {
                 new Message
                 {
-                    color = Color.Black,
-                    message = "test previous message"
+                    Color = Color.Black,
+                    MessageText = "test previous message"
                 },
                 new Message
                 {
-                    color = Color.DarkBlue,
-                    message = "another test"
+                    Color = Color.DarkBlue,
+                    MessageText = "another test"
                 }
             };
         }

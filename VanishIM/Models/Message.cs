@@ -4,7 +4,7 @@ namespace VanishIM.Models
 {
     public class Message
     {
-        public Color color;
-        public string message;
+        public Color Color { get; set; }
+        public string MessageText { get; set; }
     }
 }
