@@ -1,29 +1,27 @@
-﻿using Xamarin.Forms;
+﻿using Prism;
+using Prism.Ioc;
+using Prism.Unity;
 using VanishIM.Views;
 
 namespace VanishIM
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
+        public App() : this(null) { }
+
+        public App(IPlatformInitializer initializer) : this(initializer, true) { }
+
+        public App(IPlatformInitializer initializer, bool setFormsDependencyResolver) : base(initializer, setFormsDependencyResolver) { }
+
+        protected override void OnInitialized()
         {
             InitializeComponent();
-            MainPage = new ChatView();
+            NavigationService.NavigateAsync($"ChatView");
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            containerRegistry.RegisterForNavigation<ChatView>();
         }
     }
 }
