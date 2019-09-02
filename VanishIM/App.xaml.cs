@@ -1,7 +1,10 @@
 ﻿using Prism;
 using Prism.Ioc;
 using Prism.Unity;
+using VanishIM.Services;
+using VanishIM.ViewModels;
 using VanishIM.Views;
+using Xamarin.Forms;
 
 namespace VanishIM
 {
@@ -16,12 +19,15 @@ namespace VanishIM
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync($"ChatView");
+            NavigationService.NavigateAsync("NavigationPage/ChatView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<ChatView>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<ChatView, ChatViewModel>();
+
+            containerRegistry.Register<IChatService, ChatService>();
         }
     }
 }

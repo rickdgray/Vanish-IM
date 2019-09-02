@@ -6,18 +6,20 @@ using VanishIM.Models;
 
 namespace VanishIM.Services
 {
-    public class ChatService : IChatService
+    public sealed class ChatService : IChatService, IDisposable
     {
         private readonly HubConnection _connection;
         private readonly IHubProxy _chat;
 
-        private List<IDisposable> chatHandlers;
+        private readonly List<IDisposable> chatHandlers;
 
         public ChatService()
         {
-            _connection = new HubConnection("http://192.168.1.250:44330");
-            _connection.TraceLevel = TraceLevels.All;
-            _connection.TraceWriter = Console.Out;
+            _connection = new HubConnection("http://192.168.1.250:44330")
+            {
+                TraceLevel = TraceLevels.All,
+                TraceWriter = Console.Out
+            };
             _chat = _connection.CreateHubProxy("chat");
 
             chatHandlers = new List<IDisposable>();
@@ -30,7 +32,7 @@ namespace VanishIM.Services
                 Console.WriteLine(m.MessageText);
             }));
 
-            await _connection.Start();
+            await _connection.Start().ConfigureAwait(false);
         }
 
         public void Disconnect()
@@ -43,12 +45,17 @@ namespace VanishIM.Services
 
         public async Task<IList<Message>> GetMessages()
         {
-            return await _chat.Invoke<IList<Message>>("GetMessages");
+            return await _chat.Invoke<IList<Message>>("GetMessages").ConfigureAwait(false);
         }
 
         public async void SendMessage(Message message)
         {
-            await _chat.Invoke("SendMessage", message);
+            await _chat.Invoke("SendMessage", message).ConfigureAwait(false);
+        }
+
+        public void Dispose()
+        {
+            _connection.Dispose();
         }
 
         //TODO: handle connection issues with signalr lifecycle
