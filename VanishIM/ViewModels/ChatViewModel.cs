@@ -33,8 +33,12 @@ namespace VanishIM.ViewModels
             SendCommand = new DelegateCommand(Send);
         }
 
-        void Send()
+        async void Send()
         {
+            await _chatService.Connect().ConfigureAwait(false);
+
+            var test = await _chatService.GetMessages().ConfigureAwait(false);
+
             _chatService.SendMessage(new Message
             {
                 Color = Color.Red,
@@ -42,9 +46,9 @@ namespace VanishIM.ViewModels
             });
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            _chatService.GetMessages();
+            
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

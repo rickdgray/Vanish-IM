@@ -8,31 +8,35 @@ namespace VanishIM.Services
 {
     public sealed class ChatService : IChatService, IDisposable
     {
-        private readonly HubConnection _connection;
-        private readonly IHubProxy _chat;
+        private HubConnection _connection;
+        private IHubProxy _chat;
 
         private readonly List<IDisposable> chatHandlers;
 
         public ChatService()
         {
-            _connection = new HubConnection("http://192.168.1.250:44330")
+            chatHandlers = new List<IDisposable>();
+        }
+
+        public async Task Connect()
+        {
+            _connection = new HubConnection("http://192.168.1.250:54960")
             {
                 TraceLevel = TraceLevels.All,
                 TraceWriter = Console.Out
             };
+
             _chat = _connection.CreateHubProxy("chat");
 
-            chatHandlers = new List<IDisposable>();
-        }
-
-        public async void Connect()
-        {
             chatHandlers.Add(_chat.On<Message>("ReceiveMessage", m =>
             {
                 Console.WriteLine(m.MessageText);
             }));
 
-            await _connection.Start().ConfigureAwait(false);
+            await _connection.Start().ContinueWith(t =>
+            {
+                Console.WriteLine(t.Exception.Message);
+            }, TaskContinuationOptions.OnlyOnFaulted).ConfigureAwait(false);
         }
 
         public void Disconnect()

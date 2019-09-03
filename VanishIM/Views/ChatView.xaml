@@ -10,6 +10,8 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="Send"
+                    Command="{Binding SendCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
